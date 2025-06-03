@@ -1,8 +1,10 @@
-import Body from "../page components/Body";
-import Header from "../page components/Header";
-import Footer from "../page components/Footer";
+import Body from "../page_components/Body";
+import Header from "../page_components/Header";
+import { createUser } from "@/lib/createUser";
 
-export default function Home() {
+export default async function Home() {
+  await createUser();
+
   return (
     <>
       <div className="bg-black">
