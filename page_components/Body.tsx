@@ -20,10 +20,11 @@ export default function Body() {
           />
           <Button className="self-center">Generate</Button>
           <Textarea
-            className="w-[40%] h-96"
+            className="w-[40%] h-80"
             placeholder="The prompt will appear here"
             /* Disabled because this is where the Prompt will be */
             // disabled
+            disabled
           />
         </div>
       </div>
