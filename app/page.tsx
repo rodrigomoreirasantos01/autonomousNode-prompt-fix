@@ -2,10 +2,12 @@ import Header from "../page_components/Header";
 import Body from "../page_components/Body";
 import Footer from "../page_components/Footer";
 
-import { createUser } from "@/lib/createUser";
+// import { createUser } from "@/lib/createUser";
+import { createConversation } from "@/lib/createConversation";
 
 export default async function Home() {
-  await createUser();
+  // await createUser();
+  await createConversation();
 
   return (
     <>
