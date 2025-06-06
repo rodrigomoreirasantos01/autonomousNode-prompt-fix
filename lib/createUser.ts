@@ -10,7 +10,7 @@ export async function createUser() {
   try {
     const res = await fetch(url, options);
     const json = await res.json();
-    console.log(json);
+    console.log("USER OK");
     return json;
   } catch (err) {
     console.error(err);
