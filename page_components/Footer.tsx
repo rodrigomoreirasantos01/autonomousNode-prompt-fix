@@ -29,7 +29,7 @@ export default function Footer() {
             className="text-yellow-400 hover:underline"
           >
             YouTube
-          </a>
+          </a>{" "}
           ·{" "}
           <a
             href="https://botpress.com/docs/home"
