@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <>
-      <footer className="text-center text-sm text-gray-400 border-t-2 border-gray-100 border-opacity-20 mt-10 py-4">
+      <footer className="text-center text-sm text-gray-400 border-t border-gray-600 border-opacity-50 mt-10 py-4">
         <p>
           Built by the Botpress Team <br />
           <a
