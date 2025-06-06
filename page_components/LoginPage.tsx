@@ -12,8 +12,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function LoginPage() {
+type LoginPageProps = {
+  onLoginSuccess: () => void;
+};
+
+export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
   const [click, setClick] = useState(false);
+
+  const handleLogin = () => {
+    onLoginSuccess();
+  };
 
   return (
     <div className="w-[450px] m-auto flex-col">
@@ -70,7 +78,7 @@ export default function LoginPage() {
               </div>
             )}
 
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full" onClick={handleLogin}>
               {click ? "Sign Up" : "Login"}
             </Button>
           </div>
