@@ -18,7 +18,7 @@ export default function LoginPage() {
   return (
     <div className="w-[450px] m-auto flex-col">
       <Card className="bg-black text-white">
-        <CardHeader className="text-center border-b border-gray-800">
+        <CardHeader className="text-center border-b border-[#272c33]">
           <CardTitle>{click ? "Sign Up" : "Login"}</CardTitle>
           <CardDescription className="text-gray-300">
             {click
@@ -37,7 +37,7 @@ export default function LoginPage() {
                 name="Email"
                 type="email"
                 placeholder="Johndoe123@mail.com"
-                className="text-white border-gray-800"
+                className="text-white border-[#272c33]"
                 required
               />
             </div>
@@ -50,7 +50,7 @@ export default function LoginPage() {
                 name="password"
                 type="password"
                 placeholder="Password"
-                className="text-white border-gray-800"
+                className="text-white border-[#272c33]"
                 required
               />
             </div>
@@ -64,7 +64,7 @@ export default function LoginPage() {
                   name="password"
                   type="password"
                   placeholder="Password"
-                  className="text-white border-gray-800"
+                  className="text-white border-[#272c33]"
                   required
                 />
               </div>
@@ -76,7 +76,7 @@ export default function LoginPage() {
           </div>
         </CardContent>
 
-        <CardFooter className="border-t border-gray-800 text-center text-sm text-gray-400 py-4">
+        <CardFooter className="border-t border-[#272c33] text-center text-sm text-gray-400 py-4">
           <p>
             {click ? "Already have an account? " : "Don't have an account? "}
             <a
