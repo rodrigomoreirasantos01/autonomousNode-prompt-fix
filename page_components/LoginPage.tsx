@@ -11,9 +11,34 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { accountStorage } from "@/lib/accountStorage";
 
-export default function LoginPage() {
+type LoginPageProps = {
+  onLoginSuccess: () => void;
+};
+
+export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
   const [click, setClick] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [verifPassword, setVerifPassword] = useState("");
+
+  const handleLogin = () => {
+    onLoginSuccess();
+  };
+
+  //when email and password are typed:
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password !== verifPassword) {
+      alert("Passwords do not match! or Make sure to sign up");
+      return;
+    }
+    //Push the email and password to Table:
+    accountStorage(email, password);
+    //approve the redirect:
+    handleLogin();
+  };
 
   return (
     <div className="w-[450px] m-auto flex-col">
@@ -29,50 +54,55 @@ export default function LoginPage() {
 
         <CardContent className="p-6 space-y-6">
           <div className="grid gap-4">
-            {/* Email */}
-            <div className="grid gap-2">
-              <Label>Email</Label>
-              <Input
-                id="Email"
-                name="Email"
-                type="email"
-                placeholder="Johndoe123@mail.com"
-                className="text-white border-[#272c33]"
-                required
-              />
-            </div>
-
-            {/* Password */}
-            <div className="grid gap-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="Password"
-                className="text-white border-[#272c33]"
-                required
-              />
-            </div>
-
-            {/* Verify Password */}
-            {click && (
+            <form className="grid gap-4" onSubmit={handleSubmit}>
+              {/* Email */}
               <div className="grid gap-2">
-                <Label htmlFor="password">Verify Password</Label>
+                <Label>Email</Label>
+                <Input
+                  id="Email"
+                  name="Email"
+                  type="email"
+                  placeholder="Johndoe123@mail.com"
+                  className="text-white border-[#272c33]"
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+
+              {/* Password */}
+              <div className="grid gap-2">
+                <Label htmlFor="password">Password</Label>
                 <Input
                   id="password"
                   name="password"
                   type="password"
                   placeholder="Password"
                   className="text-white border-[#272c33]"
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>
-            )}
 
-            <Button type="submit" className="w-full">
-              {click ? "Sign Up" : "Login"}
-            </Button>
+              {/* Verify Password */}
+              {click && (
+                <div className="grid gap-2">
+                  <Label htmlFor="password">Verify Password</Label>
+                  <Input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    className="text-white border-[#272c33]"
+                    onChange={(e) => setVerifPassword(e.target.value)}
+                    required
+                  />
+                </div>
+              )}
+
+              <Button type="submit" className="w-full">
+                {click ? "Sign Up" : "Login"}
+              </Button>
+            </form>
           </div>
         </CardContent>
 
