@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { accountStorage } from "@/lib/accountStorage";
+import { findStoredAccount } from "@/lib/findStoredAccount";
 
 type LoginPageProps = {
   onLoginSuccess: () => void;
@@ -26,11 +27,13 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
   const handleLogin = () => {
     onLoginSuccess();
   };
-
   //when email and password are typed:
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password !== verifPassword) {
+
+    if (await findStoredAccount(email, password)) {
+      handleLogin();
+    } else if (password !== verifPassword) {
       alert("Passwords do not match! or Make sure to sign up");
       return;
     }
