@@ -1,8 +1,7 @@
-export async function accountStorage(email: string, password: string) {
+export async function findStoredAccount(email: string, password: string) {
   const url =
     //change table id later
-    "https://api.botpress.cloud/v1/tables/table_01JX46SX2DGJP8Q2W020DEBZZR/rows/upsert";
-
+    "https://api.botpress.cloud/v1/tables/table_01JX46SX2DGJP8Q2W020DEBZZR/rows/find";
   const options = {
     method: "POST",
     headers: {
@@ -14,12 +13,26 @@ export async function accountStorage(email: string, password: string) {
       authorization: "Bearer bp_pat_BFgnlcVQ79QYntB80tXNqxW78Z1TyF5K5zCr",
     },
     body: JSON.stringify({
-      rows: [{ id: 1, email: email, password: password }],
-      waitComputed: false,
+      limit: 1,
+      offset: 0,
+      filter: { email: email },
     }),
   };
+
   fetch(url, options)
     .then((res) => res.json())
     .then((json) => console.log(json))
     .catch((err) => console.error(err));
+
+  //storing the result:
+  const response = await fetch(url, options);
+  const data = await response.json();
+
+  //if user found:
+  const user = data.rows && data.rows[0];
+  if (user && user.password === password) {
+    return true;
+  } else {
+    return false;
+  }
 }
