@@ -1,11 +1,11 @@
-export async function listConversation(key: string) {
+export async function listConversation(userKey: string) {
   const url =
     "https://chat.botpress.cloud/9b202e36-364d-4ef5-b2c3-f39a1aeb235a/conversations";
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
-      "x-user-key": `${key}`,
+      "x-user-key": `${userKey}`,
     },
   };
 
