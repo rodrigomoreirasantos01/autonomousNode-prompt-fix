@@ -1,3 +1,5 @@
+"use client";
+
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
@@ -21,7 +23,7 @@ export default function Body() {
           <Button className="self-center">Generate</Button>
           <Textarea
             className="w-[40%] h-80"
-            placeholder="The prompt will appear here"
+            placeholder=""
             /* Disabled because this is where the Prompt will be */
             // disabled
             disabled
