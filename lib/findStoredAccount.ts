@@ -10,7 +10,7 @@ export async function findStoredAccount(email: string, password: string) {
       "x-workspace-id": "wkspace_01J5XF54MAQBP0WQVV9PG06ABE",
       "content-type": "application/json",
       //temporary key, we will make another one later
-      authorization: "Bearer bp_pat_wzspJtpOUslJTVYDEowzouh51EkViDb5ZdMw",
+      authorization: "Bearer bp_pat_BFgnlcVQ79QYntB80tXNqxW78Z1TyF5K5zCr",
     },
     body: JSON.stringify({
       limit: 1,

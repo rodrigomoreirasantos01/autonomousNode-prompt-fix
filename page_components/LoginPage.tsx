@@ -13,6 +13,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { accountStorage } from "@/lib/accountStorage";
 import { findStoredAccount } from "@/lib/findStoredAccount";
+import { createUser } from "@/lib/createUser";
+import { createConversation } from "@/lib/createConversation";
+import { listConversation } from "@/lib/listConversation";
+import { createParticipant } from "@/lib/createPaticipant";
 
 type LoginPageProps = {
   onLoginSuccess: () => void;
@@ -36,11 +40,22 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
     } else if (password !== verifPassword) {
       alert("Passwords do not match! or Make sure to sign up");
       return;
+    } else {
+      const { user, key } = await createUser(email);
+      //Push the email and password to Table:
+      const accountCreated = accountStorage(email, password, user.id);
+
+      if (!accountCreated) {
+        console.error("Something wrong with create account");
+      } else {
+        console.log("ENTREI NO CREATE CONVERSATION");
+        await createConversation(key);
+        const listConversationId = await listConversation(key);
+        await createParticipant(user, listConversationId.conversations[0].id);
+      }
+      //approve the redirect:
+      handleLogin();
     }
-    //Push the email and password to Table:
-    accountStorage(email, password);
-    //approve the redirect:
-    handleLogin();
   };
 
   return (
