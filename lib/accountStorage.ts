@@ -1,4 +1,8 @@
-export async function accountStorage(email: string, password: string) {
+export async function accountStorage(
+  email: string,
+  password: string,
+  userId: string
+) {
   const url =
     //change table id later
     "https://api.botpress.cloud/v1/tables/table_01JX45TDXA4C37VM0F9GMZJ7QV/rows/upsert";
@@ -14,7 +18,7 @@ export async function accountStorage(email: string, password: string) {
       authorization: "Bearer bp_pat_wzspJtpOUslJTVYDEowzouh51EkViDb5ZdMw",
     },
     body: JSON.stringify({
-      rows: [{ id: 1, email: email, password: password }],
+      rows: [{ id: 1, email: email, password: password, userId: userId }],
       waitComputed: false,
     }),
   };
